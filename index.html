@@ -5,171 +5,326 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="面向初次配置开发环境的 Node.js、npm 与 Homebrew 安装教程。"
+      content="面向新手的Codex配置教程。"
     />
-    <title>Node.js 环境安装教程</title>
+    <title>面向新手的Codex配置教程</title>
+    <link rel="icon" type="image/png" href="./jhss-logo-cropped.png" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <main class="page" id="Nodejs">
       <header class="site-header" aria-label="公司标识">
         <img class="company-logo" src="./jhss-logo-cropped.png" alt="公司 Logo" />
-        <span>内部安全审计资料</span>
       </header>
 
       <section class="hero">
-        <p class="eyebrow">
-          <span>环境安装指南</span>
-          <span>Node.js · npm · Homebrew</span>
-        </p>
         <div class="hero-grid">
-          <div>
-            <h1>Node.js 环境安装教程</h1>
-            <p class="lead">
-              按系统完成 Node.js 与 npm 的安装，并在终端验证命令可用。macOS 用户建议先安装
-              Homebrew，再用它管理 Node.js。
-            </p>
+          <p class="kicker">嘉合杉升 · Codex setup</p>
+          <h1>面向新手的 Codex 配置教程</h1>
+          <div class="system-tabs hero-tabs" role="tablist" aria-label="选择操作系统">
+            <button class="system-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="panel-macos" id="tab-macos" data-system="macos">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M7 4h10a2 2 0 0 1 2 2v9H5V6a2 2 0 0 1 2-2Z" />
+                <path d="M4 18h16" />
+                <path d="M9 21h6" />
+              </svg>
+              <span>macOS</span>
+            </button>
+            <button class="system-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-windows" id="tab-windows" data-system="windows">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M4 5.5 11 4v7H4V5.5Z" />
+                <path d="M13 3.6 20 2v9h-7V3.6Z" />
+                <path d="M4 13h7v7l-7-1.5V13Z" />
+                <path d="M13 13h7v9l-7-1.6V13Z" />
+              </svg>
+              <span>Windows</span>
+            </button>
+            <button class="system-tab" type="button" role="tab" aria-selected="false" aria-controls="panel-linux" id="tab-linux" data-system="linux">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M12 3c-2.2 0-3.5 1.7-3.5 4.3 0 1.2.3 2.2.8 3.1L6.6 15 5 20h14l-1.6-5-2.7-4.6c.5-.9.8-1.9.8-3.1C15.5 4.7 14.2 3 12 3Z" />
+                <path d="M9.6 15.2h4.8" />
+                <path d="M10.2 7.2h.1" />
+                <path d="M13.7 7.2h.1" />
+              </svg>
+              <span>Linux</span>
+            </button>
           </div>
-          <aside class="summary-card" aria-label="教程摘要">
-            <span>推荐路径</span>
-            <strong>macOS: Homebrew → Node.js</strong>
-            <strong>Windows: 官方 LTS 安装包</strong>
-            <strong>Linux: apt 或 nvm</strong>
-          </aside>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-head">
-          <span class="section-num">00</span>
-          <div>
-            <h2>安装前确认</h2>
-            <p>准备一个终端，并优先选择 LTS 长期支持版。LTS 通常更稳定，适合日常开发与教学环境。</p>
+      <section class="guide" aria-label="配置步骤">
+        <div class="step">
+          <div class="step-marker">
+            <span>01</span>
           </div>
-        </div>
-        <div class="check-grid">
-          <article>
-            <span>系统</span>
-            <p>macOS、Windows、Ubuntu / Debian 或其他常见 Linux 发行版。</p>
-          </article>
-          <article>
-            <span>终端</span>
-            <p>macOS 使用“终端”，Windows 使用 PowerShell，Linux 使用系统 Shell。</p>
-          </article>
-          <article>
-            <span>目标</span>
-            <p>安装后能正常执行 <code>node -v</code> 与 <code>npm -v</code>。</p>
-          </article>
-        </div>
-      </section>
+          <div class="step-content">
+            <div class="section-head">
+              <div>
+                <h2>第一步：安装 Node.js</h2>
+                <p>选择你的电脑系统，优先使用国内镜像安装 Node.js 与 npm，并在同一步完成验证。</p>
+              </div>
+            </div>
 
-      <section class="section">
-        <div class="section-head">
-          <span class="section-num">01</span>
-          <div>
-            <h2>Homebrew 安装教程</h2>
-            <p>Homebrew 是 macOS 常用的软件包管理器。安装后可以用一条命令安装、升级和卸载 Node.js。</p>
-          </div>
-        </div>
-        <div class="body-grid">
-          <div>
-            <ol class="steps">
-              <li>打开 macOS 的“终端”。</li>
-              <li>执行 Homebrew 官方安装脚本，按提示输入电脑密码。</li>
-              <li>安装结束后，根据终端提示把 Homebrew 加入 shell 环境。</li>
-              <li>执行验证命令，确认 <code>brew</code> 可用。</li>
-            </ol>
-          </div>
-          <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew -v</code></pre>
-        </div>
-        <p class="note-line">
-          如果提示 <code>brew: command not found</code>，复制安装完成时终端给出的
-          <code>eval "$(/opt/homebrew/bin/brew shellenv)"</code> 相关命令后再验证。
-        </p>
-      </section>
+            <div class="system-panel is-active" id="panel-macos" role="tabpanel" aria-labelledby="tab-macos" data-system-panel="macos">
+              <div class="body-grid">
+                <div>
+                  <ol class="steps">
+                    <li>打开 macOS 的“终端”。</li>
+                    <li>复制右侧整段脚本并执行，按提示输入电脑密码。</li>
+                    <li>脚本会自动检查 Homebrew，缺失时先从清华镜像安装，再继续安装 Node.js。</li>
+                    <li>等待终端输出 <code>Node.js is ready</code>。</li>
+                  </ol>
+                  <p class="note-line">
+                    安装 Homebrew 与 Node.js 均优先使用清华镜像。期间如果终端要求确认，请按提示输入 <code>Return</code> 或电脑密码。
+                  </p>
+                </div>
+                <div class="code-block">
+                  <button class="copy-button" type="button" aria-label="复制 macOS 安装脚本">
+                    <svg class="icon-copy" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M9 9h9v11H9z" />
+                      <path d="M6 15H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1" />
+                    </svg>
+                    <svg class="icon-check" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="m5 12 4 4L19 6" />
+                    </svg>
+                    <span>复制</span>
+                  </button>
+                  <pre><code>export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
+export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
+export HOMEBREW_INSTALL_FROM_API=1
+export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
+export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
+export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
-      <section class="section">
-        <div class="section-head">
-          <span class="section-num">02</span>
-          <div>
-            <h2>macOS 安装 Node.js</h2>
-            <p>Homebrew 安装完成后，用它安装 Node.js。npm 会随 Node.js 一起安装。</p>
-          </div>
-        </div>
-        <div class="body-grid">
-          <ol class="steps">
-            <li>在终端执行安装命令。</li>
-            <li>等待安装完成。</li>
-            <li>检查 Node.js 与 npm 版本号。</li>
-          </ol>
-          <pre><code>brew install node
+if ! command -v brew >/dev/null 2>&1; then
+  git clone --depth=1 https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/install.git /tmp/brew-install
+  /bin/bash /tmp/brew-install/install.sh
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+brew update
+brew install node
 node -v
-npm -v</code></pre>
-        </div>
-      </section>
+npm -v
+node -e "console.log('Node.js is ready')"</code></pre>
+                </div>
+              </div>
+            </div>
 
-      <section class="section">
-        <div class="section-head">
-          <span class="section-num">03</span>
-          <div>
-            <h2>Windows 安装 Node.js</h2>
-            <p>
-              访问
-              <a href="https://nodejs.org/" target="_blank" rel="noopener noreferrer">Node.js 官网</a>
-              下载 LTS 版本的 Windows Installer。安装过程保持默认选项即可。
-            </p>
-          </div>
-        </div>
-        <div class="body-grid">
-          <ol class="steps">
-            <li>下载 LTS 版本安装包。</li>
-            <li>运行安装程序，并保留“添加到 PATH”的默认设置。</li>
-            <li>安装结束后重新打开 PowerShell。</li>
-            <li>执行版本检查。</li>
-          </ol>
-          <pre><code>node -v
-npm -v</code></pre>
-        </div>
-      </section>
+            <div class="system-panel" id="panel-windows" role="tabpanel" aria-labelledby="tab-windows" data-system-panel="windows" hidden>
+              <div class="body-grid">
+                <div>
+                  <ol class="steps">
+                    <li>
+                      访问
+                      <a href="https://npmmirror.com/mirrors/node/" target="_blank" rel="noopener noreferrer">npmmirror Node.js 镜像</a>
+                      下载 LTS 版本的 Windows Installer。
+                    </li>
+                    <li>运行安装程序，并保留“添加到 PATH”的默认设置。</li>
+                    <li>安装结束后重新打开 PowerShell。</li>
+                    <li>运行验证命令，确认 Node.js 可以执行脚本。</li>
+                  </ol>
+                </div>
+                <div class="code-block">
+                  <button class="copy-button" type="button" aria-label="复制 Windows 验证命令">
+                    <svg class="icon-copy" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M9 9h9v11H9z" />
+                      <path d="M6 15H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1" />
+                    </svg>
+                    <svg class="icon-check" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="m5 12 4 4L19 6" />
+                    </svg>
+                    <span>复制</span>
+                  </button>
+                  <pre><code>node -v
+npm -v
+node -e "console.log('Node.js is ready')"</code></pre>
+                </div>
+              </div>
+            </div>
 
-      <section class="section">
-        <div class="section-head">
-          <span class="section-num">04</span>
-          <div>
-            <h2>Linux 安装 Node.js</h2>
-            <p>Ubuntu / Debian 可以先使用系统包管理器安装。多项目开发时，再考虑用 nvm 管理多个版本。</p>
-          </div>
-        </div>
-        <div class="body-grid">
-          <ol class="steps">
-            <li>打开终端。</li>
-            <li>更新软件源并安装 Node.js 与 npm。</li>
-            <li>确认版本号输出正常。</li>
-          </ol>
-          <pre><code>sudo apt update
+            <div class="system-panel" id="panel-linux" role="tabpanel" aria-labelledby="tab-linux" data-system-panel="linux" hidden>
+              <div class="body-grid">
+                <div>
+                  <ol class="steps">
+                    <li>打开终端。</li>
+                    <li>
+                      先把系统软件源切换到国内镜像，例如
+                      <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/" target="_blank" rel="noopener noreferrer">清华 Ubuntu 镜像帮助</a>
+                      或对应发行版镜像。
+                    </li>
+                    <li>更新软件源并安装 Node.js 与 npm。</li>
+                    <li>运行验证命令，确认 Node.js 可以执行脚本。</li>
+                    <li>多项目开发时，再考虑用 nvm 管理多个版本。</li>
+                  </ol>
+                </div>
+                <div class="code-block">
+                  <button class="copy-button" type="button" aria-label="复制 Linux 安装命令">
+                    <svg class="icon-copy" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M9 9h9v11H9z" />
+                      <path d="M6 15H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1v1" />
+                    </svg>
+                    <svg class="icon-check" aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="m5 12 4 4L19 6" />
+                    </svg>
+                    <span>复制</span>
+                  </button>
+                  <pre><code>sudo apt update
 sudo apt install nodejs npm
 node -v
-npm -v</code></pre>
-        </div>
-      </section>
-
-      <section class="section final">
-        <div class="section-head">
-          <span class="section-num">05</span>
-          <div>
-            <h2>验证运行环境</h2>
-            <p>最后运行一段最小 JavaScript，确认 Node.js 可以执行脚本。</p>
+npm -v
+node -e "console.log('Node.js is ready')"</code></pre>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <pre><code>node -e "console.log('Node.js is ready')"</code></pre>
-        <p class="note-line">终端输出 <code>Node.js is ready</code>，说明环境已经可用。</p>
+
+        <div class="step">
+          <div class="step-marker">
+            <span>02</span>
+          </div>
+          <div class="step-content">
+            <div class="section-head">
+              <div>
+                <h2>第二步：安装 Codex App</h2>
+                <p>
+                  访问
+                  <a href="https://github.com/Wangnov/codex-app-mirror/releases" target="_blank" rel="noopener noreferrer">codex-app-mirror releases</a>
+                  下载最新版安装包，并按当前系统完成安装。
+                </p>
+              </div>
+            </div>
+            <div class="body-grid">
+              <ol class="steps">
+                <li>打开 Codex App GitHub Releases，选择标记为 Latest 的版本。</li>
+                <li>在 Assets 中下载与系统匹配的安装包。</li>
+                <li>运行安装包并按系统提示完成安装。</li>
+                <li>安装完成后打开 Codex App，确认应用能正常启动。</li>
+              </ol>
+            </div>
+            <p class="note-line system-only-note" data-system-note="windows" hidden>
+              Windows 如果安装 <code>.Msix</code> 时提示“你的系统管理员已阻止此程序”，通常是当前设备策略不允许从商店外安装 MSIX / AppX 包，或应用安装器 / AppX 部署服务被禁用。请优先尝试 Microsoft Store 官方页面；公司、学校或其他受组织策略管理的设备需要联系设备管理员放行，GitHub Release 安装包不会绕过本机安装策略。
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-marker">
+            <span>03</span>
+          </div>
+          <div class="step-content">
+            <div class="section-head">
+              <div>
+                <h2>第三步：安装 Codex++</h2>
+                <p>
+                  访问
+                  <a href="https://github.com/BigPizzaV3/CodexPlusPlus/releases" target="_blank" rel="noopener noreferrer">codex++ releases</a>
+                  下载最新版安装包，并按当前系统完成安装。
+                </p>
+              </div>
+            </div>
+            <div class="body-grid">
+              <ol class="steps">
+                <li>打开 Codex++ GitHub Releases，选择标记为 Latest 的版本。</li>
+                <li>在 Assets 中下载与系统和芯片架构匹配的安装包。</li>
+                <li>运行安装包并按系统提示完成安装。</li>
+                <li>安装完成后重新打开 Codex 或终端，再检查 Codex++ 是否正常加载。</li>
+              </ol>
+            </div>
+            <p class="note-line system-only-note" data-system-note="macos">
+              macOS 如果提示无法打开来自互联网的应用，请在“系统设置 → 隐私与安全性”中允许打开对应应用。
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-marker">
+            <span>04</span>
+          </div>
+          <div class="step-content">
+            <div class="section-head">
+              <div>
+                <h2>第四步：注册账号</h2>
+                <p>
+                  前往
+                  <a href="http://124.222.133.97" target="_blank" rel="noopener noreferrer">嘉合杉升AI接入系统</a>
+                  完成注册。注册时用户名请使用真名，方便管理员识别并给予额度。
+                </p>
+              </div>
+            </div>
+            <div class="body-grid">
+              <ol class="steps">
+                <li>打开注册页面并按提示填写账号信息。</li>
+                <li>用户名填写本人真名，避免使用昵称或缩写。</li>
+                <li>提交注册后等待管理员审核并分配额度。</li>
+              </ol>
+            </div>
+          </div>
+        </div>
       </section>
 
       <footer class="footer">
-        <span>Node.js 环境安装教程</span>
-        <span>更新后请重新打开终端再验证命令。</span>
+        <span>嘉合杉升 版权所有</span>
       </footer>
     </main>
+    <script>
+      const systemTabs = document.querySelectorAll("[data-system]");
+      const systemPanels = document.querySelectorAll("[data-system-panel]");
+      const systemNotes = document.querySelectorAll("[data-system-note]");
+
+      systemTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const selectedSystem = tab.dataset.system;
+
+          systemTabs.forEach((item) => {
+            const isSelected = item.dataset.system === selectedSystem;
+            item.classList.toggle("is-active", isSelected);
+            item.setAttribute("aria-selected", String(isSelected));
+          });
+
+          systemPanels.forEach((panel) => {
+            const isSelected = panel.dataset.systemPanel === selectedSystem;
+            panel.classList.toggle("is-active", isSelected);
+            panel.hidden = !isSelected;
+          });
+
+          systemNotes.forEach((note) => {
+            note.hidden = note.dataset.systemNote !== selectedSystem;
+          });
+        });
+      });
+
+      document.querySelectorAll(".code-block").forEach((block) => {
+        const button = block.querySelector(".copy-button");
+        const label = button.querySelector("span");
+        const code = block.querySelector("code");
+
+        button.addEventListener("click", async () => {
+          const text = code.textContent;
+          const originalText = label.textContent;
+          button.dataset.state = "pending";
+
+          try {
+            await navigator.clipboard.writeText(text);
+            button.dataset.state = "success";
+            label.textContent = "已复制";
+          } catch {
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(code);
+            selection.removeAllRanges();
+            selection.addRange(range);
+            button.dataset.state = "success";
+            label.textContent = "已选中";
+          }
+
+          window.setTimeout(() => {
+            button.dataset.state = "";
+            label.textContent = originalText;
+          }, 1600);
+        });
+      });
+    </script>
   </body>
 </html>
