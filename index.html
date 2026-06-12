@@ -26,7 +26,6 @@
 
       <section class="blog-hero" aria-labelledby="home-title">
         <div class="blog-hero-title">
-          <h1 id="home-title">Codex入门与团队实践</h1>
           <img
             class="hero-portrait"
             src="./assets/gxy-520.png"
@@ -35,6 +34,9 @@
             alt=""
             aria-hidden="true"
           />
+          <div class="speech-card" aria-live="polite">
+            <h1 id="home-title" class="typewriter-title"></h1>
+          </div>
         </div>
       </section>
 
@@ -60,5 +62,70 @@
         <span>嘉合杉升 版权所有</span>
       </footer>
     </main>
+    <script>
+      const gxyLines = [
+        "市场算什么？老子就是行情本身！",
+        "我亏的时候叫回撤，我赚的时候叫收割，懂？",
+        "市场教我做人？我教市场做梦！",
+        "波动？那是我在给散户上强度。",
+        "我从不抄底，我只是让底部等我降临。",
+        "别人恐惧我贪婪，别人贪婪我已经把他们洗干净了。",
+        "我不是在交易，我是在君临天下。",
+        "今天又被我玩弄于股掌之间，市场这骚货真听话。"
+      ];
+
+      const title = document.querySelector(".typewriter-title");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let activeLine = "";
+      let index = 0;
+      let typingTimer;
+      let nextLineTimer;
+
+      function pickLine() {
+        if (gxyLines.length === 1) {
+          return gxyLines[0];
+        }
+
+        let nextLine = gxyLines[Math.floor(Math.random() * gxyLines.length)];
+        while (nextLine === activeLine) {
+          nextLine = gxyLines[Math.floor(Math.random() * gxyLines.length)];
+        }
+
+        return nextLine;
+      }
+
+      function scheduleNextLine() {
+        nextLineTimer = window.setTimeout(showLine, 5000);
+      }
+
+      function typeLine() {
+        title.textContent = activeLine.slice(0, index);
+        index += 1;
+
+        if (index <= activeLine.length) {
+          typingTimer = window.setTimeout(typeLine, 72);
+        } else {
+          scheduleNextLine();
+        }
+      }
+
+      function showLine() {
+        window.clearTimeout(typingTimer);
+        window.clearTimeout(nextLineTimer);
+
+        activeLine = pickLine();
+        index = 0;
+
+        if (prefersReducedMotion) {
+          title.textContent = activeLine;
+          scheduleNextLine();
+          return;
+        }
+
+        typeLine();
+      }
+
+      showLine();
+    </script>
   </body>
 </html>
