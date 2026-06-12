@@ -137,6 +137,56 @@ a:hover {
   width: 62px;
 }
 
+.home-gxy-lockup {
+  flex: 1 1 auto;
+  max-width: min(720px, 100%);
+  align-items: center;
+  gap: 12px;
+}
+
+.header-portrait {
+  flex: 0 0 auto;
+  width: 62px;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.header-speech {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: min(430px, 48vw);
+  min-height: 42px;
+  padding: 9px 13px;
+  color: var(--near-black);
+  background: rgba(250, 249, 245, 0.88);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+  font-size: 15px;
+  line-height: 1.28;
+}
+
+.header-speech::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -7px;
+  width: 13px;
+  height: 13px;
+  background: inherit;
+  border-bottom: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.header-speech .typewriter-title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .top-nav {
   display: flex;
   align-items: center;
@@ -159,7 +209,7 @@ a:hover {
 
 .blog-hero {
   max-width: 900px;
-  padding: 68px 0 54px;
+  padding: 46px 0 38px;
   border-bottom: 1px solid var(--line);
   animation: page-rise 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -168,6 +218,19 @@ a:hover {
   display: flex;
   align-items: center;
   gap: clamp(24px, 5vw, 54px);
+}
+
+.hero-brand-lockup {
+  gap: clamp(20px, 4.5vw, 44px);
+}
+
+.hero-company-logo {
+  flex: 0 0 auto;
+  width: clamp(72px, 11vw, 112px);
+  max-width: 17%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .speech-card {
@@ -199,9 +262,11 @@ a:hover {
 
 .blog-hero h1 {
   max-width: 100%;
-  font-size: clamp(27px, 3.4vw, 44px);
-  line-height: 1.22;
+  color: var(--near-black);
+  font-size: clamp(38px, 5vw, 56px);
+  line-height: 1.08;
   overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .typewriter-title::after {
@@ -1087,6 +1152,24 @@ pre code {
     font-size: 15px;
   }
 
+  .home-gxy-lockup {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    width: 100%;
+  }
+
+  .header-portrait {
+    width: 54px;
+  }
+
+  .header-speech {
+    max-width: none;
+    min-height: 38px;
+    padding: 8px 11px;
+    font-size: 14px;
+  }
+
   .top-nav {
     justify-content: start;
     gap: 13px;
@@ -1109,7 +1192,7 @@ pre code {
   }
 
   .blog-hero {
-    padding: 48px 0 34px;
+    padding: 34px 0 28px;
   }
 
   .blog-hero-title {
@@ -1131,7 +1214,12 @@ pre code {
 
   .blog-hero h1 {
     flex: 1 1 auto;
-    font-size: clamp(21px, 6.2vw, 30px);
+    font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .hero-company-logo {
+    width: clamp(54px, 18vw, 72px);
+    max-width: 21%;
   }
 
   .hero-portrait {
